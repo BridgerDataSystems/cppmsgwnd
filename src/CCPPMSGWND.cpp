@@ -16,7 +16,7 @@ namespace __N_CPPMSGWND__
 			return false;
 		}
 
-		this->m_strWindowClassName.assign(init.window_class);
+		this->m_strWindowClass.assign(init.window_class);
 		this->m_strWindowName.assign(init.window_name);
 
 		std::promise<bool>_bPromiseInitialized;
@@ -111,7 +111,7 @@ namespace __N_CPPMSGWND__
 		wcex.cbSize = sizeof(WNDCLASSEXA);
 		wcex.lpfnWndProc = (WNDPROC)CCPPMSGWND::AppWndProc;
 		wcex.hInstance = l_hInst;
-		wcex.lpszClassName = this->m_strWindowClassName.c_str();
+		wcex.lpszClassName = this->m_strWindowClass.c_str();
 
 		if (!RegisterClassExA(&wcex) && ERROR_CLASS_ALREADY_EXISTS != GetLastError())
 		{
@@ -123,7 +123,7 @@ namespace __N_CPPMSGWND__
 		// Create the main window.
 		this->m_hwnd = CreateWindowExA(
 			NULL,
-			this->m_strWindowClassName.c_str(),
+			this->m_strWindowClass.c_str(),
 			this->m_strWindowName.c_str(),
 			NULL,
 			NULL,
@@ -139,7 +139,7 @@ namespace __N_CPPMSGWND__
 		if (!m_hwnd)
 		{
 			this->m_strLastError.assign("CCPPMSGWND::TTCreateWindow - CreateWindowEx FAILED to Create Window with error code: %d", GetLastError());
-			UnregisterClassA(this->m_strWindowClassName.c_str(), l_hInst);
+			UnregisterClassA(this->m_strWindowClass.c_str(), l_hInst);
 			promise.set_value(FALSE);
 			return false;
 		}
@@ -167,7 +167,7 @@ namespace __N_CPPMSGWND__
 			return false;
 		}
 
-		if (!UnregisterClassA(this->m_strWindowClassName.c_str(), l_hInst))
+		if (!UnregisterClassA(this->m_strWindowClass.c_str(), l_hInst))
 		{
 			this->m_strLastError.assign("CCPPMSGWND::TTDestroyWindow - UnregisterClass FAILED with error: %d", GetLastError());
 			return false;
@@ -198,7 +198,7 @@ namespace __N_CPPMSGWND__
                 }
 		
 		return DefWindowProc(hWnd, uInt, wParam, lParam);
-	}    
+	}
 
 	ICPPMSGWND* CreateCPPMSGWND() noexcept
     {

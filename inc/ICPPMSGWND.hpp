@@ -7,14 +7,14 @@
 #define EXTERNC extern "C"
 #else
 #define EXTERNC
-#endif
+#endif // !__cplusplus
 
 #ifdef CPPMSGWND_EXPORTS
 #define CPPMSGWND_API EXTERNC __declspec(dllexport)
 #else
 #define CPPMSGWND_API EXTERNC __declspec(dllimport)
 #pragma comment(lib, "cppmsgwnd")
-#endif
+#endif // !CPPMSGWND_EXPORTS
 
 #include <functional>
 #include <string>

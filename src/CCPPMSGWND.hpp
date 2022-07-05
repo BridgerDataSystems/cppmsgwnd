@@ -24,7 +24,7 @@ namespace __N_CPPMSGWND__
 		HWND		    m_hwnd{};
 		unsigned int    m_iThreadId{ 0 };
 		std::thread	    m_hThread{};
-		std::string	    m_strWindowClassName{};
+		std::string	    m_strWindowClass{};
 		std::string	    m_strWindowName{};
 		std::mutex	    m_PushMutex{};
 
