@@ -15,7 +15,6 @@ set(APP_SAMPLES_DIR ./samples/)
 set(APP_SOURCES_DIR ./src/)
 set(APP_INCLUDE_DIR ./inc)
 
-
 #project name
 set(PROJECT_NAME_1 cppmsgwnd)
 

@@ -3,8 +3,8 @@
 
 namespace __N_CPPMSGWND__
 {
-    #define ASSERTINITIALIZED_BOOL if (!this->IsInitialized()) { this->m_strLastError.assign("FAILED because CCPPMSGWND is not initialized"); return false; }
-    #define ASSERTINITIALIZED_INT if (!this->IsInitialized()) { this->m_strLastError.assign("FAILED because CCPPMSGWND is not initialized"); return 0; }
+    #define ASSERTINITIALIZED_BOOL if (!this->IsInitialized()) { this->m_strLastError.assign("FAILED because CPPMSGWND is not initialized"); return false; }
+    #define ASSERTINITIALIZED_INT if (!this->IsInitialized()) { this->m_strLastError.assign("FAILED because CPPMSGWND is not initialized"); return 0; }
 
 	WND_LAMBDA_MAP	CCPPMSGWND::m_mapRegisteredCallbakFunctions;
 
