@@ -1,6 +1,8 @@
 
 #include "CCPPMSGWND.hpp"
 
+#include <sstream>
+
 namespace __N_CPPMSGWND__
 {
     #define ASSERTINITIALIZED_BOOL if (!this->IsInitialized()) { this->m_strLastError.assign("FAILED because CPPMSGWND is not initialized"); return false; }
@@ -163,13 +165,17 @@ namespace __N_CPPMSGWND__
 
 		if (!DestroyWindow(this->m_hwnd))
 		{
-			this->m_strLastError.assign("CCPPMSGWND::TTDestroyWindow - DestroyWindow FAILED with error: %d", GetLastError());
+            std::stringstream l_stream{};
+            l_stream << "CCPPMSGWND::TTDestroyWindow - DestroyWindow FAILED with error: " << GetLastError();
+			this->m_strLastError.assign(l_stream.str());
 			return false;
 		}
 
 		if (!UnregisterClassA(this->m_strWindowClass.c_str(), l_hInst))
 		{
-			this->m_strLastError.assign("CCPPMSGWND::TTDestroyWindow - UnregisterClass FAILED with error: %d", GetLastError());
+            std::stringstream l_stream{};
+            l_stream << "CCPPMSGWND::TTDestroyWindow - UnregisterClass FAILED with error" << GetLastError();
+			this->m_strLastError.assign(l_stream.str());
 			return false;
 		}
 

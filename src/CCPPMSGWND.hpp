@@ -32,6 +32,9 @@ namespace __N_CPPMSGWND__
 
 		void InformRegistredModules(int, unsigned int, int, int) noexcept;
 		bool TTCreateWindow(std::promise<bool>&&) noexcept;
+        
+		bool m_bInitialized{ false };
+        std::string m_strLastError{};
 
 	protected:
 	public:
@@ -50,6 +53,9 @@ namespace __N_CPPMSGWND__
 		int GetHWND() const noexcept final { return (int)this->m_hwnd; }
 
 		static LRESULT CALLBACK AppWndProc(HWND, UINT, WPARAM, LPARAM);
+        
+        std::string getLastError() const noexcept final { return this->m_strLastError; }
+		bool IsInitialized() const noexcept final { return this->m_bInitialized; }
 	};
 } // !__N_CPPMSGWND__
 

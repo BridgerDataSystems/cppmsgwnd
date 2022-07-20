@@ -10,8 +10,11 @@ namespace __N_CPPWNDMSG__
 	class CCPPWNDMSG : public ICPPWNDMSG
 	{
 	private:
-		std::string	    m_strWindowClass{};
-		std::string	    m_strWindowName{};
+		std::string m_strWindowClass{};
+		std::string m_strWindowName{};
+        
+		bool m_bInitialized{ false };
+        std::string m_strLastError{};
 
 	protected:
 	public:
@@ -27,6 +30,9 @@ namespace __N_CPPWNDMSG__
         
         bool send(unsigned int, int, int) noexcept final;
         bool post(unsigned int, int, int) noexcept final;
+
+        std::string getLastError() const noexcept final { return this->m_strLastError; }
+		bool IsInitialized() const noexcept final { return this->m_bInitialized; }
 	};
 } // !__N_CPPMSGWND__
 

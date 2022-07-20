@@ -31,9 +31,6 @@ namespace __N_CPPWNDMSG__
 	{
 	private:
 	protected:
-		bool m_bInitialized{ false };
-        std::string m_strLastError{};
-
 	public:
 		ICPPWNDMSG() = default;
 		ICPPWNDMSG(const ICPPWNDMSG&) = delete;
@@ -44,12 +41,12 @@ namespace __N_CPPWNDMSG__
 
 		virtual bool Initialize(const CPPWNDMSG_INIT&) noexcept = 0;
 		virtual bool UnInitialize() noexcept = 0;
-		bool IsInitialized() const noexcept { return this->m_bInitialized; }
+		virtual bool IsInitialized() const noexcept = 0;
         
         virtual bool send(unsigned int, int, int) noexcept = 0;
         virtual bool post(unsigned int, int, int) noexcept = 0;
 
-        std::string getLastError() const noexcept { return this->m_strLastError; }
+        virtual std::string getLastError() const noexcept = 0;
 	};
 
 	CPPWNDMSG_API ICPPWNDMSG* CreateCPPWNDMSG() noexcept;

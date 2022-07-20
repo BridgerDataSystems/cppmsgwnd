@@ -33,9 +33,6 @@ namespace __N_CPPMSGWND__
 	{
 	private:
 	protected:
-		bool m_bInitialized{ false };
-        std::string m_strLastError{};
-
 	public:
 		ICPPMSGWND() = default;
 		ICPPMSGWND(const ICPPMSGWND&) = delete;
@@ -46,13 +43,13 @@ namespace __N_CPPMSGWND__
 
 		virtual bool Initialize(const CPPMSGWND_INIT&) noexcept = 0;
 		virtual bool UnInitialize() noexcept = 0;
-		bool IsInitialized() const noexcept { return this->m_bInitialized; }
+		virtual bool IsInitialized() const noexcept = 0;
 
 		virtual unsigned short RegisterCallbackFunction(WND_LAMBDA) noexcept = 0;
-		virtual bool DeRegisterCallbackFunction(const unsigned short index) noexcept = 0;
+		virtual bool DeRegisterCallbackFunction(const unsigned short) noexcept = 0;
 		virtual int GetHWND() const noexcept = 0;
 
-        std::string getLastError() const noexcept { return this->m_strLastError; }
+        virtual std::string getLastError() const noexcept = 0;
 	};
 
 	CPPMSGWND_API ICPPMSGWND* CreateCPPMSGWND() noexcept;
